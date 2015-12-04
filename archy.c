@@ -5,14 +5,10 @@
 #include <ctype.h>
 #include "archy.h"
 #include "dict.h"
-#include "search.h"
-#include "encoder.h"
-
-
+#include "rle.h"
+#include "huffman.h"
 
 void pr_error(char * msg);
-void archive(char * input, char * output);
-void extract(char * input, char * output);
 
 /****************** MAIN **********************/
 
@@ -26,8 +22,10 @@ int main(int argc, char ** argv) {
   int len1, len2;
   int i;
 
-  archive(input, output);
-
+  encode_DICT(input, output);
+  encode_RLE(input, output);
+  encode_Huffman(input, output);
+  encode_LZ77(input, output);
 
 
 /*
@@ -58,52 +56,6 @@ int main(int argc, char ** argv) {
   return 0;
 
 }
-
-
-
-
-void archive(char * input, char * output) {
-  int len1, len2;
-  float cmpr;
-  int id[MAX_ID];
-
-  dict_init();
-  build_dictionary(input);
-  dict_compact();
-  printf("\n\nCompact dictionary: \n");
-  dict_print();
-
-  dict_build_id_list(id);
-  encode(input, output, id);
-  len1 = strlen(input);
-  len2 = strlen(output);
-  cmpr = ((float)len2)/len1*100;
-  printf("\n\nInput string (%d): %s", len1, input);
-  printf("\nOutput string (%d): %s", len2, output);
-  printf("\nCompression: %.0f%%", cmpr);
-
-  dict_destroy();
-}
-
-
-
-
-/****************** EXTRACT **********************/
-
-void extract(char * input, char * output) {
-  
-
-}
-
-
-/****************** UTILS **********************/
-
-void pr_error(char * msg) {
-	printf("Error; %s", msg);
-	dict_destroy();
-	exit(1);
-}
-
 
 
 

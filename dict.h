@@ -8,14 +8,7 @@
 #ifndef DICT_H_
 #define DICT_H_
 
-void dict_init();
-void dict_destroy();
-int  dict_add(char * term, unsigned occ);
-int  dict_contains(char * term);
-void dict_get_by_id(int id, char *buf);
-int  dict_get_num();
-void dict_print();
-void dict_compact();
-void dict_build_id_list(int id[]);
+encode_DICT(char *input, char *output);
+decode_DICT(char *input, char *output);
 
 #endif /* DICT_H_ */
