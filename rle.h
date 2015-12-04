@@ -9,5 +9,6 @@
 #define RLE_H_
 
 void encode_RLE(char *input, char *output);
+void decode_RLE(char *input, char *output);
 
 #endif /* RLE_H_ */
