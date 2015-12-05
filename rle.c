@@ -40,10 +40,10 @@ void encode_RLE(char *input, char *output) {
 			state = 1;
 			break;
 		case 1: /* in the middle of different characters */
-			if(ch == str[sing_len - 1]) {
+			if(ch == sing[sing_len - 1]) {
 				if(sing_len > 2) {
 					sing_len--;
-					output++[0] = (char) (-1)*(sing_len);
+					output++[0] = (char)(-1)*(sing_len);
 					strncpy(output, sing, sing_len);
 					output += sing_len;
 				}
@@ -89,7 +89,6 @@ void decode_RLE(char *input, char *output) {
 	char ch;
 	
 	while(ch = *input++) {
-		
 		if(ch < 0) {
 			/* different charecters */
 			strncpy(output, input, (-1)*ch);
@@ -102,7 +101,6 @@ void decode_RLE(char *input, char *output) {
 				output++[0] = c;
 			}
 		}
-	
 	}
 }
 

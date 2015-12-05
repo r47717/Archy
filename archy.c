@@ -11,17 +11,32 @@ void make_zip_name(char *name, char *zip_name);
 
 int main(int argc, char ** argv) {
  
-  char input[MAX_LEN + 1] = "A Marcy woman working as a teacher assistant at Oneida-Herkimer-Madison BOCES was arrested Thursday on charges involving endangering the welfare of a child, according the Oneida County Child Advocacy Center."
-"Sheriff’s Investigator Daniel Brown said that on several occasions between Sept. 25 and 29 through Facebook messenger, Lisa M. Hughes, 43, of Marcy, allegedly engaged in sexual chats/messages with a person younger than 17, officials said."
-"She was charged with misdemeanor endangering the welfare of a child, officials said.";
+  char input[MAX_LEN + 1] = "A Maraaaaaacy woman working as a teacharrrrrrer assistant at Oneida-Herkimer-Madison BOCES was arrested Thursday on charges involving endangering the welfare of a child, according the Oneida County Child Advocacy Center."
+"Sheriff’s Investigator Daniel Brown said that on several occasions betweeeeeeen Sept. 25 and 29 through Facebook messenger, Lisa M. Hughes, 43, of Marcy, allegedly engaged in sexual chats/messages with a person younger than 17, officials said."
+"She was charged with misdemeanor endangering the welfare of a child, offffffficials said.";
   char output[MAX_LEN + 1];
+  int output_len;
 
   FILE *fp1;
   FILE *fp2;
 
+  if(argc == 1) {
+	  /*encode_RLE(input, output);
+	  printf("input string (len = %d): '%s'\n", strlen(input), input);
+	  printf("encoded string (len = %d): '%s'\n", strlen(output), output);
+	  decode_RLE(output, input);
+	  printf("decoded string (len = %d): '%s'\n", strlen(input), input);*/
+
+	  output_len = encode_Huffman(input, output);
+	  printf("input string (len = %d): '%s'\n", strlen(input), input);
+	  printf("encoded string len = %d\n", output_len);
+
+	  exit(0);
+  }
+
   if(argc < 2 || argc > 4) {
     printf("Usage: archy [-a | -x] <input file> [<output file>]");
-    return;
+    return 1;
   }
   
   if(strcmp(argv[1], "-a") == 0) {
@@ -43,8 +58,10 @@ int main(int argc, char ** argv) {
     
   }
 
+/*
   fread(fp1, input, MAX_LEN);
   fwrite(fp2, output, MAX_LEN);
+*/
 
 
   encode_DICT(input, output);

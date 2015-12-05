@@ -12,11 +12,11 @@
 #include "archy.h"
 #include "dict.h"
 
-void pr_error(char * msg);
+static void pr_error(char * msg);
 
-int occurrences(char *str, char *word);
-void find_repeat_n(char * str, int n);
-void build_dictionary(char *input);
+static int occurrences(char *str, char *word);
+static void find_repeat_n(char * str, int n);
+static void build_dictionary(char *input);
 
 
 /*==================================== Dictionary Operations =========================================*/
@@ -332,7 +332,7 @@ static void build_dictionary(char *input) {
 
 
 
-void pr_error(char * msg) {
+static void pr_error(char * msg) {
 	printf("Error; %s", msg);
 	dict_destroy();
 	exit(1);

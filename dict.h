@@ -8,7 +8,7 @@
 #ifndef DICT_H_
 #define DICT_H_
 
-encode_DICT(char *input, char *output);
-decode_DICT(char *input, char *output);
+void encode_DICT(char *input, char *output);
+void decode_DICT(char *input, char *output);
 
 #endif /* DICT_H_ */
