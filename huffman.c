@@ -213,5 +213,31 @@ int encode_Huffman(char *input, char *output) {
 /*---- decoder ----*/
 
 void decode_Huffman(char *input, char *output) {
+	int i;
+	int k;
+	tree_data_len = *input++;
+	unsigned char byte = 0;
+	char bit_cnt = 0;
 	
+	for(i = 0; i < tree_data_len; i++) {
+		tree_data[i].ch = *input++;
+		tree_data[i].code_len = *input++;
+		byte = *input++;
+		for(k = 0; k < tree_data[i].code_len; k++) {
+			tree_data[i].code[k] = get_bit(byte, bit_cnt++);
+		}
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
